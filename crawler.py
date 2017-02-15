@@ -20,6 +20,9 @@ html_template = """
 
 """
 
+path_wkhtmltopdf = 'D:\\Applications\\wkhtmltopdf\\bin\\wkhtmltopdf.exe'
+config = pdfkit.configuration(wkhtmltopdf=path_wkhtmltopdf)
+
 
 def parse_url_to_html(url, name):
     """
@@ -51,7 +54,8 @@ def parse_url_to_html(url, name):
                 rtn = m.group(1) + "http://www.liaoxuefeng.com" + m.group(2) + m.group(3)
                 return rtn
             else:
-                return m.group(1)+m.group(2)+m.group(3)
+                return m.group(1) + m.group(2) + m.group(3)
+
         html = re.compile(pattern).sub(func, html)
         html = html_template.format(content=html)
         html = html.encode("utf-8")
@@ -102,13 +106,13 @@ def save_pdf(htmls, file_name):
         ],
         'outline-depth': 10,
     }
-    pdfkit.from_file(htmls, file_name, options=options)
+    pdfkit.from_file(htmls, file_name, options=options, configuration=config)
 
 
 def main():
     start = time.time()
     urls = get_url_list()
-    file_name = u"liaoxuefeng_Python3_tutorial.pdf"
+    file_name = u"liaoxuefeng_Python3（after_fork）_tutorial.pdf"
     htmls = [parse_url_to_html(url, str(index) + ".html") for index, url in enumerate(urls)]
     save_pdf(htmls, file_name)
 

@@ -20,7 +20,7 @@ html_template = """
 
 """
 
-path_wkhtmltopdf = 'D:\\Applications\\wkhtmltopdf\\bin\\wkhtmltopdf.exe'
+path_wkhtmltopdf = 'D:\\Applications\\wkhtmltopdf\\bin\\wkhtmltopdf.exe'  # os:win10，unable to run the script after adding the exe into path,so using the solution
 config = pdfkit.configuration(wkhtmltopdf=path_wkhtmltopdf)
 
 
